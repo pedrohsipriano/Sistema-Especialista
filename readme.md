@@ -48,15 +48,42 @@ No fim de uma linha de produção automotiva, cada peça (exemplo fictício: um 
 
 O sistema é **híbrido**: a previsão do modelo de Machine Learning vira um **fato** usado pelas regras do sistema especialista.
 
-```
- Sensores                 FASE 1 (Machine Learning)            FASE 2 (Sistema Especialista)
-┌──────────────┐        ┌───────────────────────────┐        ┌─────────────────────────────┐
-│ peso_kg      │──────▶ │  Árvore de decisão         │──────▶ │  Motor de inferência         │──▶ Ação
-│ comprimento  │        │  prevê: aprovada /         │ fato:  │  consulta a base de regras   │
-│ ruido_db     │        │         defeituosa         │qualid. │  (R1 a R5)                   │
-└──────────────┘        └───────────────────────────┘        └─────────────────────────────┘
-                                                                     ▲
- Histórico da linha ── defeito_repetido (sim/não) ───────────────────┘
+```mermaid
+flowchart LR
+    subgraph SENS["Sensores"]
+        direction TB
+        P["peso_kg"]
+        C["comprimento_mm"]
+        R["ruido_db"]
+    end
+
+    subgraph F1["Fase 1 · Machine Learning"]
+        ARV{{"Árvore de decisão"}}
+    end
+
+    subgraph F2["Fase 2 · Sistema Especialista"]
+        MOT["Motor de inferência<br/>consulta as regras R1 a R5"]
+    end
+
+    HIST[("Histórico da linha")]
+    ACAO(["Ação"])
+
+    SENS --> ARV
+    ARV -- "fato: qualidade<br/>aprovada / defeituosa" --> MOT
+    HIST -- "fato: defeito_repetido<br/>sim / não" --> MOT
+    MOT --> ACAO
+
+    classDef sensor fill:#E3F2FD,stroke:#1E88E5,color:#0D47A1
+    classDef ml fill:#F3E5F5,stroke:#8E24AA,color:#4A148C
+    classDef se fill:#E8F5E9,stroke:#43A047,color:#1B5E20
+    classDef hist fill:#FFF8E1,stroke:#FFB300,color:#5D4037
+    classDef acao fill:#FFEBEE,stroke:#E53935,color:#B71C1C
+
+    class P,C,R sensor
+    class ARV ml
+    class MOT se
+    class HIST hist
+    class ACAO acao
 ```
 
 1. Os sensores medem peso, comprimento e ruído da peça.
