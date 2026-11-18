@@ -299,29 +299,6 @@ Para medir o modelo em casos que ele nunca viu. Avaliando com os mesmos dados do
 
 ---
 
-## Limitações
-
-- **Dados simulados e poucos:** 30 peças criadas para separar facilmente as classes; o resultado não representa uma fábrica real.
-- **Teste pequeno:** 100% de acurácia em 8 casos exige cautela.
-- **Só três atributos:** o sistema não detecta trincas, cor errada ou peça trocada.
-- **Valores fora do treino:** uma peça com medidas muito diferentes das vistas no treino (ex.: 1,00 kg ou 20 dB) ainda é classificada pelo modelo, que pode errar fora do domínio de treinamento.
-- **`defeito_repetido` informado manualmente:** o histórico da linha não é calculado pelo sistema.
-- **Sem especialista real:** as regras vêm de documentos e não foram validadas por um inspetor de qualidade.
-- **Supervisão humana:** a recomendação final deve sempre permitir explicação e revisão humana.
-
----
-
-## Melhorias futuras
-
-- [ ] Estender a R5 para medidas **fora do intervalo** visto no treino.
-- [ ] Mostrar as condições aprendidas pela árvore (`export_text` / `plot_tree`).
-- [ ] Retornar uma **explicação** junto da regra (fatos usados e motivo).
-- [ ] Calcular `defeito_repetido` automaticamente a partir do histórico das últimas peças.
-- [ ] Salvar o dataset em CSV (`dados.to_csv("pecas.csv", index=False)`).
-- [ ] Usar mais dados e validação separada para avaliar melhor o modelo.
-
----
-
 ## Referências
 
 - Profa. Kadidja Valéria. *Sistemas Especialistas: conhecimento, regras e inferência* (Aula 12). UDF.
