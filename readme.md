@@ -284,17 +284,6 @@ Para medir o modelo em casos que ele nunca viu. Avaliando com os mesmos dados do
 
 ---
 
-## Melhorias futuras
-
-- [ ] Estender a R5 para medidas **fora do intervalo** visto no treino.
-- [ ] Mostrar as condições aprendidas pela árvore (`export_text` / `plot_tree`).
-- [ ] Retornar uma **explicação** junto da regra (fatos usados e motivo).
-- [ ] Calcular `defeito_repetido` automaticamente a partir do histórico das últimas peças.
-- [ ] Salvar o dataset em CSV (`dados.to_csv("pecas.csv", index=False)`).
-- [ ] Usar mais dados e validação separada para avaliar melhor o modelo.
-
----
-
 ## Referências
 
 - Profa. Kadidja Valéria. *Sistemas Especialistas: conhecimento, regras e inferência* (Aula 12). UDF.
